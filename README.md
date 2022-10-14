@@ -178,29 +178,40 @@ and other [awesome lists](https://github.com/sindresorhus/awesome).
 
 #### Surface reconstruction
 
+| Measure                        | Summary                                                                                                                                                                                                           | Interpretation | References                                                                                                                            |
+|--------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------|---------------------------------------------------------------------------------------------------------------------------------------|
+| Euler number                   | `2 - 2g` where `g` is the number of topological holes in the surface. Computed by the [Euler–Lhulier formula](https://www.quantamagazine.org/topology-101-how-mathematicians-study-holes-20210126/) (`V - E + F`) | higher better  | ([Rosen et al., 2018](#ref-Rosen2018)), ([Dale et al., 1999](#ref-Dale1999)), [Freesurfer](https://surfer.nmr.mgh.harvard.edu/fswiki) |
+| Local gyrification index (LGI) | Measures degree of cortical folding in neighborhood of each vertex (spatial map).                                                                                                                                 |                | [Freesurfer](https://surfer.nmr.mgh.harvard.edu/fswiki/LGI)                                                                           |
+| BBR criterion                  | Measures the magnitude of WM/GM contrast across the WM surface boundary                                                                                                                                           | higher better  | ([Greve & Fischl, 2009](#ref-Greve2009)), [Freesurfer](https://surfer.nmr.mgh.harvard.edu/fswiki)                                     |
+
 #### Cortical/subcortical segmentation
+
+| Measure            | Summary                                                       | Interpretation | References                                                                                                                                                                                      |
+|--------------------|---------------------------------------------------------------|----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Subcortical volume | Volume of each subcortical region in a segmentation (vector). |                | [FIRST](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FIRST), [Freesurfer](https://surfer.nmr.mgh.harvard.edu/fswiki)                                                                                  |
+| Cortical volume    | Volume of each cortical region in a parcellation (vector).    |                | ([Alfaro-Almagro et al., 2018](#ref-Alfaro-Almagro2018)), [ANTs](https://github.com/ANTsX/ANTs) [Freesurfer](https://surfer.nmr.mgh.harvard.edu/fswiki), [Mindboggle](https://mindboggle.info/) |
+| Cortical thickness | Mean thickness of each region in a parcellation (vector).     |                | ([Rosen et al., 2018](#ref-Rosen2018)), [ANTs](https://github.com/ANTsX/ANTs), [Freesurfer](https://surfer.nmr.mgh.harvard.edu/fswiki)                                                          |
 
 ### Functional BOLD
 
 #### Image quality
 
-| Measure                           | Summary                                                                         | Interpretation                                                                                                   | References                                                                           |
-|-----------------------------------|---------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
-| EFC                               | Shannon entropy as indicator of ghosting due to head motion                     | lower better                                                                                                     | [MRIQC](https://mriqc.readthedocs.io/), ([Atkinson et al., 1997](#ref-Atkinson1997)) |
-| FBER                              | Ratio of “mean energy” within head vs air                                       | higher better                                                                                                    | [MRIQC](https://mriqc.readthedocs.io/), ([Shehzad et al., 2015](#ref-Shehzad2015))   |
-| FWHM                              | Estimation of image smoothness. Higher values mean blurry.                      |                                                                                                                  | [MRIQC](https://mriqc.readthedocs.io/)                                               |
-| SNR                               | SNR within brain mask.                                                          | higher better                                                                                                    | [MRIQC](https://mriqc.readthedocs.io/)                                               |
-| BOLD summary stats                | BOLD intensity summary stats (mean, stdev, p95, p05)                            |                                                                                                                  | [MRIQC](https://mriqc.readthedocs.io/)                                               |
-| Global correlation (GCor)         | Average correlation between every voxel                                         |                                                                                                                  |                                                                                      |
-| and every other voxel             |                                                                                 | [AFNI](https://afni.nimh.nih.gov/), [MRIQC](https://mriqc.readthedocs.io/), ([Saad et al., 2013](#ref-Saad2013)) |                                                                                      |
-| Temporal standard deviation (tSD) | Map of temporal standard deviation                                              | lower better                                                                                                     | [MRIQC](https://mriqc.readthedocs.io/), ([Marcus et al., 2013](#ref-Marcus2013))     |
-| Temporal SNR (tSNR)               | Map of temporal mean divided by standard deviation                              | higher better                                                                                                    | [MRIQC](https://mriqc.readthedocs.io/)                                               |
-| Ghost to signal ratio (GSR)       | Measures amount of signal in regions prone to ghosting                          | lower better                                                                                                     | [MRIQC](https://mriqc.readthedocs.io/)                                               |
-| AFNI outlier ratio (AOR)          | Mean fraction of “outliers” per fMRI volume using AFNI `3dToutcount`            | lower better                                                                                                     | [AFNI](https://afni.nimh.nih.gov/), [MRIQC](https://mriqc.readthedocs.io/)           |
-| AFNI quality index (AQI)          | Mean “quality index”, which for each volume is 1 - correlation to median volume | lower better                                                                                                     | [AFNI](https://afni.nimh.nih.gov/), [MRIQC](https://mriqc.readthedocs.io/)           |
-| Number of dummy scans             | Number of non-steady state dummy scans                                          |                                                                                                                  | [MRIQC](https://mriqc.readthedocs.io/)                                               |
-| Carpet plot                       | BOLD time series for a set of ROIs arranged in a matrix                         |                                                                                                                  | [MRIQC](https://mriqc.readthedocs.io/), ([Power, 2017](#ref-Power2017))              |
-| Air signal                        | mean BOLD time series for a set of background/air slices                        |                                                                                                                  | [MRIQC](https://mriqc.readthedocs.io/)                                               |
+| Measure                           | Summary                                                                         | Interpretation | References                                                                                                       |
+|-----------------------------------|---------------------------------------------------------------------------------|----------------|------------------------------------------------------------------------------------------------------------------|
+| EFC                               | Shannon entropy as indicator of ghosting due to head motion                     | lower better   | [MRIQC](https://mriqc.readthedocs.io/), ([Atkinson et al., 1997](#ref-Atkinson1997))                             |
+| FBER                              | Ratio of “mean energy” within head vs air                                       | higher better  | [MRIQC](https://mriqc.readthedocs.io/), ([Shehzad et al., 2015](#ref-Shehzad2015))                               |
+| FWHM                              | Estimation of image smoothness. Higher values mean blurry.                      |                | [MRIQC](https://mriqc.readthedocs.io/)                                                                           |
+| SNR                               | SNR within brain mask.                                                          | higher better  | [MRIQC](https://mriqc.readthedocs.io/)                                                                           |
+| BOLD summary stats                | BOLD intensity summary stats (mean, stdev, p95, p05)                            |                | [MRIQC](https://mriqc.readthedocs.io/)                                                                           |
+| Global correlation (GCor)         | Average correlation between every voxel and every other voxel                   |                | [AFNI](https://afni.nimh.nih.gov/), [MRIQC](https://mriqc.readthedocs.io/), ([Saad et al., 2013](#ref-Saad2013)) |
+| Temporal standard deviation (tSD) | Map of temporal standard deviation                                              | lower better   | [MRIQC](https://mriqc.readthedocs.io/), ([Marcus et al., 2013](#ref-Marcus2013))                                 |
+| Temporal SNR (tSNR)               | Map of temporal mean divided by standard deviation                              | higher better  | [MRIQC](https://mriqc.readthedocs.io/)                                                                           |
+| Ghost to signal ratio (GSR)       | Measures amount of signal in regions prone to ghosting                          | lower better   | [MRIQC](https://mriqc.readthedocs.io/)                                                                           |
+| AFNI outlier ratio (AOR)          | Mean fraction of “outliers” per fMRI volume using AFNI `3dToutcount`            | lower better   | [AFNI](https://afni.nimh.nih.gov/), [MRIQC](https://mriqc.readthedocs.io/)                                       |
+| AFNI quality index (AQI)          | Mean “quality index”, which for each volume is 1 - correlation to median volume | lower better   | [AFNI](https://afni.nimh.nih.gov/), [MRIQC](https://mriqc.readthedocs.io/)                                       |
+| Number of dummy scans             | Number of non-steady state dummy scans                                          |                | [MRIQC](https://mriqc.readthedocs.io/)                                                                           |
+| Carpet plot                       | BOLD time series for a set of ROIs arranged in a matrix                         |                | [MRIQC](https://mriqc.readthedocs.io/), ([Power, 2017](#ref-Power2017))                                          |
+| Air signal                        | mean BOLD time series for a set of background/air slices                        |                | [MRIQC](https://mriqc.readthedocs.io/)                                                                           |
 
 #### Motion correction
 
@@ -248,6 +259,14 @@ Medical Imaging*, *16*(6), 903–910. <https://doi.org/10.1109/42.650886>
 
 </div>
 
+<div id="ref-Dale1999" class="csl-entry">
+
+Dale, A. M., Fischl, B., & Sereno, M. I. (1999). Cortical surface-based
+analysis: I. Segmentation and surface reconstruction. *Neuroimage*,
+*9*(2), 179–194. <https://doi.org/10.1006/nimg.1998.0395>
+
+</div>
+
 <div id="ref-Das2022" class="csl-entry">
 
 Das, D., Etzel, J., Esteban, O., MacNicol, E., Ghosh, S., &
@@ -284,6 +303,14 @@ D. B., et al. (2012). Function biomedical informatics research network
 recommendations for prospective multicenter functional MRI studies.
 *Journal of Magnetic Resonance Imaging*, *36*(1), 39–54.
 <https://doi.org/10.1002/jmri.23572>
+
+</div>
+
+<div id="ref-Greve2009" class="csl-entry">
+
+Greve, D. N., & Fischl, B. (2009). Accurate and robust brain image
+alignment using boundary-based registration. *Neuroimage*, *48*(1),
+63–72. <https://doi.org/10.1016/j.neuroimage.2009.06.060>
 
 </div>
 

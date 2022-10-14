@@ -90,6 +90,8 @@ time point.
 [`fsl_motion_outliers`]: <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FSLMotionOutliers>
 [XCP]: <https://xcpengine.readthedocs.io/index.html>
 [C-PAC]: <https://fcp-indi.github.io/docs/latest/user/index>
+[Mindboggle]: <https://mindboggle.info/>
+[ANTs]: <https://github.com/ANTsX/ANTs>
 
 ## Measures
 
@@ -137,8 +139,19 @@ time point.
 
 #### Surface reconstruction
 
+| Measure | Summary | Interpretation | References |
+|---|---|---|---|
+| Euler number | `2 - 2g` where `g` is the number of topological holes in the surface. Computed by the [Euler–Lhulier formula](https://www.quantamagazine.org/topology-101-how-mathematicians-study-holes-20210126/) (`V - E + F`) | higher better | [@Rosen2018], [@Dale1999], [Freesurfer] |
+| Local gyrification index (LGI) | Measures degree of cortical folding in neighborhood of each vertex (spatial map). |  | [Freesurfer](https://surfer.nmr.mgh.harvard.edu/fswiki/LGI) |
+| BBR criterion | Measures the magnitude of WM/GM contrast across the WM surface boundary | higher better | [@Greve2009], [Freesurfer] |
+
 #### Cortical/subcortical segmentation
 
+| Measure | Summary | Interpretation | References |
+|---|---|---|---|
+| Subcortical volume | Volume of each subcortical region in a segmentation (vector). |  | [FIRST](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FIRST), [Freesurfer] |
+| Cortical volume | Volume of each cortical region in a parcellation (vector). |  | [@Alfaro-Almagro2018], [ANTs] [Freesurfer], [Mindboggle] |
+| Cortical thickness | Mean thickness of each region in a parcellation (vector). |  | [@Rosen2018], [ANTs], [Freesurfer] |
 
 ### Functional BOLD
 
@@ -151,8 +164,7 @@ time point.
 | FWHM | Estimation of image smoothness. Higher values mean blurry. |  | [MRIQC] |
 | SNR | SNR within brain mask. | higher better | [MRIQC]  |
 | BOLD summary stats | BOLD intensity summary stats (mean, stdev, p95, p05) |  | [MRIQC] |
-| Global correlation (GCor) | Average correlation between every voxel
-and every other voxel |  | [AFNI], [MRIQC], [@Saad2013] |
+| Global correlation (GCor) | Average correlation between every voxel and every other voxel |  | [AFNI], [MRIQC], [@Saad2013] |
 | Temporal standard deviation (tSD) | Map of temporal standard deviation | lower better | [MRIQC], [@Marcus2013] |
 | Temporal SNR (tSNR) | Map of temporal mean divided by standard deviation | higher better | [MRIQC] |
 | Ghost to signal ratio (GSR) | Measures amount of signal in regions prone to ghosting | lower better | [MRIQC] |
