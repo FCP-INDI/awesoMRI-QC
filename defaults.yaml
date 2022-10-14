@@ -1,13 +1,12 @@
-input-file: src/README.md
+input-file: README_pandoc.md
 output-file: README.md
 
 from: markdown
 to: gfm
 
 citeproc: true
-# reference-links: true
 
 metadata:
   bibliography: mri-qc.bib
-  csl: src/apa.csl
+  csl: media/apa.csl
   link-citations: true
