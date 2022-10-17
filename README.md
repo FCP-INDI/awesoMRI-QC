@@ -37,7 +37,7 @@ and other [awesome lists](https://github.com/sindresorhus/awesome).
     - [Functional connectivity](#functional-connectivity)
   - [Diffusion weighted imaging (DWI)](#diffusion-weighted-imaging-dwi)
     - [Image quality](#image-quality-2)
-    - [Diffusion tensor modeling](#diffusion-tensor-modeling)
+    - [Fiber orientation modeling](#fiber-orientation-modeling)
     - [Tractography](#tractography)
     - [Structural connectivity](#structural-connectivity)
 - [References](#references)
@@ -90,7 +90,13 @@ and other [awesome lists](https://github.com/sindresorhus/awesome).
   open-source software package for processing of multimodal neuroimages
   with extensive QC metrics for T1w and BOLD MRI images.
 - [DPABI](http://rfmri.org/dpabi): A toolbox for Data Processing &
-  Analysis for Brain Imaging including GUI-based QC reports
+  Analysis for Brain Imaging including GUI-based QC reports.
+- [DSI Studio](https://dsi-studio.labsolver.org/): A tractography
+  software tool that maps brain connections and correlates findings with
+  neuropsychological disorders. Includes automated QC metrics.
+- [QSIprep](https://qsiprep.readthedocs.io/): Configures pipelines for
+  processing diffusion-weighted MRI (dMRI) data. Includes QC metrics
+  from [DSI Studio](https://dsi-studio.labsolver.org/).
 
 ### QC at scale
 
@@ -112,6 +118,10 @@ and other [awesome lists](https://github.com/sindresorhus/awesome).
   anatomical segmentations
 - [Braindr](https://github.com/OpenNeuroLab/braindr): a firebase app for
   braindr: Tinder for brains
+- [Fibr](https://fibr.dev): An app for quality control of diffusion MRI
+  images from the Healthy Brain Network
+- [dmriprep-viewer](http://www.nipreps.org/dmriprep-viewer): Web app to
+  visualize local QSIprep and dMRIprep outputs
 
 ### Automated QC with machine learning
 
@@ -222,13 +232,24 @@ and other [awesome lists](https://github.com/sindresorhus/awesome).
 
 #### Co-registration
 
+| Measure              | Summary                                                                      | Interpretation | References                                         |
+|----------------------|------------------------------------------------------------------------------|----------------|----------------------------------------------------|
+| Co-registration cost | Cost function for rigid registration between BOLD and T1                     | lower better   | [XCP](https://xcpengine.readthedocs.io/index.html) |
+| Brain mask overlap   | Dice or Jaccard brain mask overlap coefficient between resampled BOLD and T1 | higher better  | [XCP](https://xcpengine.readthedocs.io/index.html) |
+
 #### Functional connectivity
 
 ### Diffusion weighted imaging (DWI)
 
 #### Image quality
 
-#### Diffusion tensor modeling
+| Measure                   | Summary                                                                                   | Interpretation                        | References                                                                                                                                  |
+|---------------------------|-------------------------------------------------------------------------------------------|---------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| Mean neighbor correlation | Average Pearson correlation between each diffusion image and its q-space nearest neighbor | expected range `[0.6, 0.8]`           | [QSIprep](https://qsiprep.readthedocs.io/), [DSI Studio](https://dsi-studio.labsolver.org/), ([Yeh et al., 2019](#ref-Yeh2019))             |
+| Dropout slice count       | Count of slices with significant signal dropout                                           | expected less than 0.1%               | [QSIprep](https://qsiprep.readthedocs.io/), [DSI Studio](https://dsi-studio.labsolver.org/), ([Yeh et al., 2019](#ref-Yeh2019))             |
+| Fiber coherence index     | Measures how well fibers are connected to each other                                      | low values indicate flipped b-vectors | [QSIprep](https://qsiprep.readthedocs.io/), [DSI Studio](https://dsi-studio.labsolver.org/), ([Schilling et al., 2019](#ref-Schilling2019)) |
+
+#### Fiber orientation modeling
 
 #### Tractography
 
@@ -400,6 +421,16 @@ in resting-state FMRI. *Brain Connectivity*, *3*(4), 339–352.
 
 </div>
 
+<div id="ref-Schilling2019" class="csl-entry">
+
+Schilling, K. G., Yeh, F.-C., Nath, V., Hansen, C., Williams, O.,
+Resnick, S., Anderson, A. W., & Landman, B. A. (2019). A fiber coherence
+index for quality control of b-table orientation in diffusion MRI scans.
+*Magnetic Resonance Imaging*, *58*, 82–89.
+<https://doi.org/10.1016/j.mri.2019.01.018>
+
+</div>
+
 <div id="ref-Shehzad2015" class="csl-entry">
 
 Shehzad, Z., Giavasis, S., Li, Q., Benhajali, Y., Yan, C., Yang, Z.,
@@ -426,6 +457,15 @@ Tustison, N. J., Avants, B. B., Cook, P. A., Zheng, Y., Egan, A.,
 Yushkevich, P. A., & Gee, J. C. (2010). N4ITK: Improved N3 bias
 correction. *IEEE Transactions on Medical Imaging*, *29*(6), 1310–1320.
 <https://doi.org/10.1109/TMI.2010.2046908>
+
+</div>
+
+<div id="ref-Yeh2019" class="csl-entry">
+
+Yeh, F.-C., Zaydan, I. M., Suski, V. R., Lacomis, D., Richardson, R. M.,
+Maroon, J. C., & Barrios-Martinez, J. (2019). Differential tractography
+as a track-based biomarker for neuronal injury. *Neuroimage*, *202*,
+116131. <https://doi.org/10.1016/j.neuroimage.2019.116131>
 
 </div>
 

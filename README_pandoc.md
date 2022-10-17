@@ -28,7 +28,7 @@ Inspired by [awesome-python](https://github.com/vinta/awesome-python) and other 
     - [Functional connectivity](#functional-connectivity)
   - [Diffusion weighted imaging (DWI)](#diffusion-weighted-imaging-dwi)
     - [Image quality](#image-quality-2)
-    - [Diffusion tensor modeling](#diffusion-tensor-modeling)
+    - [Fiber orientation modeling](#fiber-orientation-modeling)
     - [Tractography](#tractography)
     - [Structural connectivity](#structural-connectivity)
 - [References](#references)
@@ -56,7 +56,9 @@ time point.
 - [C-PAC][]: A configurable, open-source, Nipype-based, automated processing pipeline for resting state functional MRI data
   - [C-PAC QC](https://fcp-indi.github.io/docs/latest/user/pipelines/quality.html): QC metrics and reports extending [XCP].
 - [XCP][]: A free, open-source software package for processing of multimodal neuroimages with extensive QC metrics for T1w and BOLD MRI images.
-- [DPABI](http://rfmri.org/dpabi): A toolbox for Data Processing & Analysis for Brain Imaging including GUI-based QC reports
+- [DPABI](http://rfmri.org/dpabi): A toolbox for Data Processing & Analysis for Brain Imaging including GUI-based QC reports.
+- [DSI Studio][]: A tractography software tool that maps brain connections and correlates findings with neuropsychological disorders. Includes automated QC metrics.
+- [QSIprep][]: Configures pipelines for processing diffusion-weighted MRI (dMRI) data. Includes QC metrics from [DSI Studio].
 
 ### QC at scale
 
@@ -69,6 +71,8 @@ time point.
 - [MIQA](https://miqa.kitware.com/): Efficient and accurate QC processing by leveraging modern UI/UX and deep learning techniques
 - [MindControl](https://github.com/akeshavan/mindcontrol): An app for quality control of neuroimaging pipeline outputs, especially anatomical segmentations
 - [Braindr](https://github.com/OpenNeuroLab/braindr): a firebase app for braindr: Tinder for brains
+- [Fibr](https://fibr.dev): An app for quality control of diffusion MRI images from the Healthy Brain Network
+- [dmriprep-viewer](http://www.nipreps.org/dmriprep-viewer): Web app to visualize local QSIprep and dMRIprep outputs
 
 ### Automated QC with machine learning
 
@@ -92,6 +96,8 @@ time point.
 [C-PAC]: <https://fcp-indi.github.io/docs/latest/user/index>
 [Mindboggle]: <https://mindboggle.info/>
 [ANTs]: <https://github.com/ANTsX/ANTs>
+[QSIprep]: <https://qsiprep.readthedocs.io/>
+[DSI Studio]: <https://dsi-studio.labsolver.org/>
 
 ## Measures
 
@@ -183,13 +189,24 @@ time point.
 
 #### Co-registration
 
+| Measure | Summary | Interpretation | References |
+|---|---|---|---|
+| Co-registration cost | Cost function for rigid registration between BOLD and T1 | lower better | [XCP] |
+| Brain mask overlap | Dice or Jaccard brain mask overlap coefficient between resampled BOLD and T1 | higher better | [XCP] |
+
 #### Functional connectivity
 
 ### Diffusion weighted imaging (DWI)
 
 #### Image quality
 
-#### Diffusion tensor modeling
+| Measure | Summary | Interpretation | References |
+|---|---|---|---|
+| Mean neighbor correlation | Average Pearson correlation between each diffusion image and its q-space nearest neighbor | expected range `[0.6, 0.8]` | [QSIprep], [DSI Studio], [@Yeh2019] |
+| Dropout slice count | Count of slices with significant signal dropout | expected less than 0.1% | [QSIprep], [DSI Studio], [@Yeh2019] |
+| Fiber coherence index | Measures how well fibers are connected to each other | low values indicate flipped b-vectors | [QSIprep], [DSI Studio], [@Schilling2019] |
+
+#### Fiber orientation modeling
 
 #### Tractography
 
