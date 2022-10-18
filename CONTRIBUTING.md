@@ -16,7 +16,7 @@ Seriously, we'd love your help making this a useful resource.
 * Make your additions to [**README_pandoc.md**](README_pandoc.md) (**VERY IMPORTANT**).
 * Update the bib file [mri-qc.bib](mri-qc.bib) if necessary. **Please remember to include a DOI.**
   * Don't worry about the `date-added`, `date-modified`, and `bdsk-*` fields. These are created by [BibDesk](https://bibdesk.sourceforge.io/).
-* Run `make build` to compile [README.md](README.md). You will need [pandoc](https://pandoc.org/) for this.
+* Run `make` to compile [README.md](README.md). You will need [pandoc](https://pandoc.org/) for this.
 * Commit your changes.
 * Open a Pull Request.
 * Make sure the PR title is in the format of `Add something-or-other`.

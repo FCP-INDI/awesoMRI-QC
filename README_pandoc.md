@@ -196,6 +196,8 @@ time point.
 
 #### Functional connectivity
 
+**TODO**
+
 ### Diffusion weighted imaging (DWI)
 
 #### Image quality
@@ -208,8 +210,14 @@ time point.
 
 #### Fiber orientation modeling
 
+**TODO**
+
 #### Tractography
 
+**TODO**
+
 #### Structural connectivity
+
+**TODO**
 
 ## References

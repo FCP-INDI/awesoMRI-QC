@@ -239,6 +239,8 @@ and other [awesome lists](https://github.com/sindresorhus/awesome).
 
 #### Functional connectivity
 
+**TODO**
+
 ### Diffusion weighted imaging (DWI)
 
 #### Image quality
@@ -251,9 +253,15 @@ and other [awesome lists](https://github.com/sindresorhus/awesome).
 
 #### Fiber orientation modeling
 
+**TODO**
+
 #### Tractography
 
+**TODO**
+
 #### Structural connectivity
+
+**TODO**
 
 ## References
 
